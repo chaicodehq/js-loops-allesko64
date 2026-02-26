@@ -31,4 +31,34 @@
  */
 export function sabziMandiBill(shoppingList, priceList) {
   // Your code here
+  if(!Array.isArray(shoppingList) || shoppingList.length === 0) return {
+    items : [],
+    totalBill : 0
+  }
+  let totalBill = 0;
+  let ans = [];
+
+  for(const list of shoppingList){
+
+    if(Object.keys(priceList).includes(list.name)){
+      if(priceList[list.name] <= 80){
+        totalBill += priceList[list.name] * list.qty;
+        let i = {
+          name : list.name,
+          qty : list.qty,
+          cost : priceList[list.name]*list.qty
+        }
+        ans.push(i);
+
+      }
+    }
+    
+
+  }
+  return {
+    items: ans,
+    totalBill: totalBill,
+  };
+
+
 }
